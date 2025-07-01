@@ -12,26 +12,14 @@ def number_of_subscribers(subreddit):
     """
     if not subreddit or not isinstance(subreddit, str):
         return 0
-    
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {
-        "User-Agent": "python:alu-scripting:v1.0"
-    }
-    
+
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {"User-Agent": "python:alu-scripting:v1.0"}
     try:
-        response = requests.get(
-            url,
-            headers=headers,
-            allow_redirects=False
-        )
-        
+        response = requests.get(url, headers=headers, allow_redirects=False)
         if response.status_code != 200:
             return 0
-            
         data = response.json()
-        subscribers = data.get("data", {}).get("subscribers", 0)
-        
-        return subscribers if isinstance(subscribers, int) else 0
-        
-    except:
+        return data.get("data", {}).get("subscribers", 0)
+    except Exception:
         return 0
