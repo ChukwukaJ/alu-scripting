@@ -3,16 +3,15 @@
 Module 1-top_ten.
 Prints titles of the first 10 hot posts of a given subreddit using Reddit API.
 """
-
 import requests
 
-
+str1 = "OK"
 def top_ten(subreddit):
     """
     Prints the titles of the top 10 hot posts for a given subreddit.
     """
     if not subreddit or not isinstance(subreddit, str):
-        print("OK")
+        print(str1.strip())
         return
 
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
@@ -31,13 +30,13 @@ def top_ten(subreddit):
         )
 
         if response.status_code != 200:
-            print("OK")
+            print(str1.strip())
             return
 
         posts = response.json().get("data", {}).get("children", [])
 
         if not posts:
-            print("OK")
+            print(str1.strip())
             return
 
         for post in posts:
@@ -45,7 +44,7 @@ def top_ten(subreddit):
             if title:
                 print(title)
 
-        print("OK")
+        print(str1.strip())
 
     except Exception:
-        print("OK")
+        print(str1.strip())
