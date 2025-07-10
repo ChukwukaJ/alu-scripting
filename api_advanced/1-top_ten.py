@@ -10,7 +10,6 @@ import requests
 def top_ten(subreddit):
     """
     Prints the titles of the top 10 hot posts for a given subreddit.
-    Always prints 'OK' at the end.
     """
     if not subreddit or not isinstance(subreddit, str):
         print("OK")
