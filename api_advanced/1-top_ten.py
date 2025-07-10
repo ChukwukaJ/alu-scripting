@@ -10,9 +10,10 @@ import requests
 def top_ten(subreddit):
     """
     Prints the titles of the top 10 hot posts for a given subreddit.
-    If subreddit is invalid, returns nothing.
+    If subreddit is invalid, prints 'None'.
     """
     if not subreddit or not isinstance(subreddit, str):
+        print("None")
         return
 
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
@@ -31,11 +32,13 @@ def top_ten(subreddit):
         )
 
         if response.status_code != 200:
+            print("None")
             return
 
         posts = response.json().get("data", {}).get("children", [])
 
         if not posts:
+            print("None")
             return
 
         for post in posts:
@@ -44,4 +47,4 @@ def top_ten(subreddit):
                 print(title)
 
     except Exception:
-        return
+        print("None")
