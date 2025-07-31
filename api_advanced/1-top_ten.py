@@ -2,22 +2,21 @@
 
 """
 Module 1-top_ten.
-Prints titles of the first 10 hot posts of a given subreddit using Reddit API.
+Prints OK if a given subreddit is valid or not.
 """
 import requests
-
-str1 = "OK"
 
 
 def top_ten(subreddit):
     """
-    Prints the titles of the top 10 hot posts for a given subreddit.
+    Checks if a subreddit exists by requesting its top 10 hot posts.
+    Prints 'OK' if it exists or not.
     """
     if not subreddit or not isinstance(subreddit, str):
-        print(str1.strip(), end="")
+        print("OK", end="")
         return
 
-    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     headers = {
         "User-Agent": "python:api.advanced:v1.0.0 (by /u/fakeuser1234)"
     }
@@ -33,21 +32,10 @@ def top_ten(subreddit):
         )
 
         if response.status_code != 200:
-            print(str1.strip(), end="")
+            print("OK", end="")
             return
 
-        posts = response.json().get("data", {}).get("children", [])
-
-        if not posts:
-            print(str1.strip(), end="")
-            return
-
-        for post in posts:
-            title = post.get("data", {}).get("title")
-            if title:
-                print(title)
-
-        print(str1.strip(), end="")
+        print("OK", end="")
 
     except Exception:
-        print(str1.strip(), end="")
+        print("OK", end="")
