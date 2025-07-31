@@ -17,7 +17,7 @@ def top_ten(subreddit):
         print(str1, end="", flush=True)
         return
 
-    url = "https://ww.reddit.com/r/{}/hot.json".format(subreddit)
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {
         "User-Agent": "python:api.advanced:v1.0.0 (by /u/fakeuser1234)"
     }
@@ -36,14 +36,14 @@ def top_ten(subreddit):
             print(str1, end="", flush=True)
             return
 
-        print(str1, end="", flush=True)
-        return
-
         posts = response.json().get("data", {}).get("children", [])
 
         if not posts:
             print(str1, end="", flush=True)
             return
+
+        for post in posts:
+            print(post.get("data", {}).get("title"))
 
     except Exception:
         print(str1, end="", flush=True)
