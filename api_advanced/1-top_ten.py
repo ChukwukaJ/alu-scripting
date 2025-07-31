@@ -17,30 +17,31 @@ def top_ten(subreddit):
         print(str1, end="", flush=True)
         return
 
-    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    url = "https://ww.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {
-        "User-Agent": "python:api.advanced:v1.0.0 (by /u/fakeuser1234)"
+            "User-Agent": "python:api.advanced:v1.0.0 (by /u/fakeuser1234)"
     }
     params = {"limit": 10}
 
     try:
         response = requests.get(
-            url,
-            headers=headers,
-            params=params,
-            allow_redirects=False,
-            timeout=10
-        )
+                url,
+                headers=headers,
+                params=params,
+                allow_redirects=False,
+                timeout=10
+            )
 
-        if response.status_code != 200:
-            print(str1, end="", flush=True)
-            return
+            if response.status_code != 200:
+                print(str1, end="", flush=True)
+                return
 
-        posts = response.json().get("data", {}).get("children", [])
+            posts = response.json().get("data", {}).get("children", [])
 
-        if not posts:
-            print(str1, end="", flush=True)
-            return
+            if not posts:
+                print(str1, end="", flush=True)
+                return
 
     except Exception:
         print(str1, end="", flush=True)
+
