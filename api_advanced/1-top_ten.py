@@ -42,11 +42,6 @@ def top_ten(subreddit):
             print(str1.strip(), end="")
             return
 
-        for post in posts:
-            title = post.get("data", {}).get("title")
-            if title:
-                print(title)
-
         print(str1.strip(), end="")
 
     except Exception:
